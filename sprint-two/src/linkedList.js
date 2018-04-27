@@ -2,6 +2,7 @@ var LinkedList = function() {
   var list = {};
   list.head = null;
   list.tail = null;
+  list.prevHead = null;
 
   list.addToTail = function(value) {
     var newNode = Node(value);
@@ -18,16 +19,22 @@ var LinkedList = function() {
 
   list.removeHead = function() {
 
-    if (this.head.next) { //if next exists  --> node5
+    if (this.head.next) { //if next exists
       this.head = this.head.next; //reassign head to next
+      return this.head.next;
     } else { //else
+      this.prevHead = this.head.value; // assign previous head value to list.prevHead
       this.head = null; //head = null
       this.tail = null; //tail = null
+      return this.prevHead;
     }
-    return this.head.next;
   };
 
-  list.contains = function(target) {
+  list.contains = function(target, start) { //(node5, start) // looking at node5
+    let begin = start || this.head;
+    if (begin.value === target) return true; 
+    if (begin.next === null) return false;
+    return this.contains(target, begin.next); //(node5, this.head.next)
   };
 
   return list;
