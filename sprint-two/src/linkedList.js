@@ -32,8 +32,8 @@ var LinkedList = function() {
 
   list.contains = function(target, start) { //(node5, start) // looking at node5
     let begin = start || this.head;
-    if (begin.value === target) return true; 
-    if (begin.next === null) return false;
+    if (begin.value === target) {return true;} 
+    if (begin.next === null) {return false;}
     return this.contains(target, begin.next); //(node5, this.head.next)
   };
 
@@ -51,4 +51,7 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+addTail = constant O(1) 
+removeHead = constant O(1)
+contains = linear O(n)
  */
