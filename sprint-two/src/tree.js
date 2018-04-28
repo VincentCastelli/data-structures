@@ -20,18 +20,27 @@ treeMethods.addChild = function(value) {
   this.children.push(child);
 };
 
-treeMethods.contains = function(target, start) {
-  for (var i = 0; i < this.children.length; i++) {
-    var currentNode = start || this.children[i];
-    if (target === this.children[i].value) {
-      return true;
-    }
-    // if (this.children.length > 0) { 
-    //   return this.contains(target, currentNode.children[i]);
-    // } else {
-    //   return false; 
-    // } 
+treeMethods.contains = function(target) {
+  var rootNode = this;
+  var found = false;
+  if (target === rootNode.value) {
+    return true;
   }
+  var checkChildren = function (target, currentNode) {
+    for (var i = 0; i < currentNode.children.length; i++) {
+      if (target === currentNode.children[i].value) {
+        found = true;
+      } else {
+        checkChildren(target, currentNode.children[i]);
+      }
+    }
+  }; 
+
+  if (rootNode.children.length > 0) {
+    checkChildren(target, rootNode);
+  }
+  
+  return found;
 };
 
 
