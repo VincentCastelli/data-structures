@@ -12,7 +12,6 @@ var BinarySearchTree = function(value) {
 };
 
 
-
 var newBinaryTreeMethods = {};
 
 
@@ -76,7 +75,7 @@ newBinaryTreeMethods.contains = function (target) {
     checkLeft(target, rootNode.left);
   }
   if (target > rootNode.value) {
-    checkRight(target, rootNode.right)
+    checkRight(target, rootNode.right);
   }
   
   return found;
@@ -87,7 +86,7 @@ newBinaryTreeMethods.depthFirstLog = function (func) {
   var funcLeft = function (func, currentNode) {
     func(currentNode.value);
     if (currentNode.left) {
-      funcLeft(func, currentNode.left)
+      funcLeft(func, currentNode.left);
     } else if (currentNode.right) {
       funcRight(func, currentNode.right);
     }
@@ -95,17 +94,17 @@ newBinaryTreeMethods.depthFirstLog = function (func) {
   var funcRight = function (func, currentNode) {
     func(currentNode.value);
     if (currentNode.left) {
-      funcLeft(func, currentNode.left)
+      funcLeft(func, currentNode.left);
     } else if (currentNode.right) {
       funcRight(func, currentNode.right);
     }
   };
   func(rootNode.value);
   if (rootNode.left) {
-    funcLeft(func, rootNode.left)
+    funcLeft(func, rootNode.left);
   }
   if (rootNode.right) {
-    funcRight(func, rootNode.right)
+    funcRight(func, rootNode.right);
   }
 };
 
