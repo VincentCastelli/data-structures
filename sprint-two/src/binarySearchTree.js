@@ -58,7 +58,7 @@ newBinaryTreeMethods.contains = function (target) {
     } else if (target < currentNode.value && currentNode.left) {
       checkLeft(target, currentNode.left);
     } else if (target > currentNode.value && currentNode.right) {
-      checkLeft(target, currentNode.right);
+      checkRight(target, currentNode.right);
     }
   };
   var checkRight = function (target, currentNode) {
@@ -67,7 +67,7 @@ newBinaryTreeMethods.contains = function (target) {
     } else if (target < currentNode.value && currentNode.left) {
       checkLeft(target, currentNode.left);
     } else if (target > currentNode.value && currentNode.right) {
-      checkLeft(target, currentNode.right);
+      checkRight(target, currentNode.right);
     }
   };
 
@@ -111,4 +111,7 @@ newBinaryTreeMethods.depthFirstLog = function (func) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+insert = linear O(n)
+contains = linear O(n)
+depthFirstLog = linear 0(n)
  */
