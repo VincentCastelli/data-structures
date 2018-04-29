@@ -7,16 +7,23 @@ HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var newBucket = [[k, v]];
   var newTuple = [k, v];
+  var exists = false;
 
-  if (this._storage.get(index) === undefined) { // if current storage cell is empty
-    this._storage.set(index, newBucket); // push bucket with tuple inside to current storage cell
+  if (this._storage.get(index) !== undefined) {
+    for (var i = 0; i < this._storage.get(index).length; i++) {
+      if (k === this._storage.get(index)[i][0]) {
+        exists = true;
+        this._storage.get(index)[i][1] = v;
+      } 
+    }
+
+    if (!exists) {
+      this._storage.get(index)[0].push(newTuple);
+    }
   } else {
-    this._storage.get(index)[0].push(newTuple); // push tuple to existing bucket at current storage cell
+    this._storage.set(index, newBucket);
   }
-  
-  if (k === this._storage.get(index)[0][0]) {
-    this._storage.get(index)[0][1] = v;
-  }
+
 };
 
 HashTable.prototype.retrieve = function(k) {
